@@ -1,27 +1,35 @@
 # FGA Kominfo Learning
 
-## Table of Contents
+## Day 2
+1. Conditional Statement
+    - if else
+    - switch
+    - best practice
+2. Loop
+    - cara menggunakan
+        - di go hanya ada for loop
+3. Array/Slice
+    - assign
+    - get data
+    - loop over
+4. Map (Key/Value Type)
+    - assign
+    - get data
+    - delete 
+    - loop over
+5. Alias
+6. String
+    - ascii / rune / byte
+    - loop over
+Mini Quiz
+---
 
-- [About](#about)
+Notes:
+// APA ITU NIL?
+// APA ITU IMMUTABLE DAN MUTABLE TYPE?
 
-- [Prerequisites](#prerequisites)
-- [Contributing](#maintainer)
+Array/Slice -> hubungannya index(berurutan) dan value
+Hash Map / Map -> key dan value
 
-## About <a name = "about"></a>
-
-This project contains all example codes per day. Kindly periodically check the branches on this repo.
-Good Luck Have Fun
-
-### Prerequisites <a name = "prerequisites"></a>
-
-tools needed:
-1. [vscode](https://code.visualstudio.com/download) (default), or others text editor sublime/goland/vim
-2. [go](https://go.dev/doc/install), kindly choose go version that compatible with your Operating System (OS), latest version 1.19.1
-3. [docker](https://www.docker.com/products/docker-desktop) (optional)
-
-before started:
-1. enroll class with given code from hactive8 team
-
-
-## Maintainer <a name = "maintainer"></a>
-[calmantara](https://github.com/Calmantara)
+---
+![alt day2](./day2.jpg)
