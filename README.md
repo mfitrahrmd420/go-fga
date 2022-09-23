@@ -1,27 +1,36 @@
 # FGA Kominfo Learning
 
-## Table of Contents
+## DAY 3
+- Function
+- Closure & Callback
+- Pointer
+- Struct
+- Variable Scope
 
-- [About](#about)
+---
+Notes:
 
-- [Prerequisites](#prerequisites)
-- [Contributing](#maintainer)
+Function:
+input -> output
+x -> [x] -> y
 
-## About <a name = "about"></a>
+Variable Scope
+-> ditandakan dengan huruf kapital pada setiap deklarasi
+    -> huruf kapital => variable/function/constant/struct bisa diakses oleh pkg lain
+    -> huruf lower case => variable/function/constant/struct bersifat private hanya untuk pkg tersebut
 
-This project contains all example codes per day. Kindly periodically check the branches on this repo.
-Good Luck Have Fun
+Init Function:
+-> setiap package yang dipanggil oleh package main
+dan memiliki init function, go akan menjalankan 
+semua init function terlebih dahulu
+sebelum menjalankan main function
 
-### Prerequisites <a name = "prerequisites"></a>
+Pointer:
+-> sering terjadi "invalid nil memory address"
 
-tools needed:
-1. [vscode](https://code.visualstudio.com/download) (default), or others text editor sublime/goland/vim
-2. [go](https://go.dev/doc/install), kindly choose go version that compatible with your Operating System (OS), latest version 1.19.1
-3. [docker](https://www.docker.com/products/docker-desktop) (optional)
+---
+References:
+- https://medium.com/@anar_py/option-pattern-in-go-944eda01677a
 
-before started:
-1. enroll class with given code from hactive8 team
-
-
-## Maintainer <a name = "maintainer"></a>
-[calmantara](https://github.com/Calmantara)
+---
+![alt day3](./day3.jpg)

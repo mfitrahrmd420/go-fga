@@ -1,0 +1,20 @@
+// yang mana yang bisa diakses pkg main
+/*
+	Gender
+	Male
+	Female
+	UserGender
+	GetUser
+	StoreUser
+*/
+
+// dan tidak bisa diakses pkg main
+/*
+	setGender
+	users
+*/
+
+
+// model yang mana yang bisa di akses oleh
+// file usecase
+// - semua bisa diakses
