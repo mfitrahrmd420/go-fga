@@ -1,27 +1,31 @@
 # FGA Kominfo Learning
 
-## Table of Contents
+## DAY 5
 
-- [About](#about)
+- Channel
+  - pengertian channel
+  - kegunaan channel dalam concurrency
+  - sending and receive data in channel
+  - switch channel
+  - real case channel 
 
-- [Prerequisites](#prerequisites)
-- [Contributing](#maintainer)
+  example:
+    - worker pool
+ref: 
+  - https://gobyexample.com/worker-pools
+  - https://ably.com/blog/pubsub-golang
+  - https://medium.com/@thejasbabu/concurrency-patterns-golang-5c5e1bcd0833
 
-## About <a name = "about"></a>
+- defer and exit program
+   - pengertian defer function dan exit 
+   - kegunaannya dari defer dan exit
+ref: 
+   - https://stackoverflow.com/questions/37798572/exiting-go-applications-gracefully
 
-This project contains all example codes per day. Kindly periodically check the branches on this repo.
-Good Luck Have Fun
-
-### Prerequisites <a name = "prerequisites"></a>
-
-tools needed:
-1. [vscode](https://code.visualstudio.com/download) (default), or others text editor sublime/goland/vim
-2. [go](https://go.dev/doc/install), kindly choose go version that compatible with your Operating System (OS), latest version 1.19.1
-3. [docker](https://www.docker.com/products/docker-desktop) (optional)
-
-before started:
-1. enroll class with given code from hactive8 team
-
-
-## Maintainer <a name = "maintainer"></a>
-[calmantara](https://github.com/Calmantara)
+- error, panic, recover
+    - error pada golang
+    - handling error pada golang
+    - panic situation 
+        - common panic situation
+    - recover function
+    - real cases
