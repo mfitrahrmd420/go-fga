@@ -1,27 +1,48 @@
 # FGA Kominfo Learning
 
-## Table of Contents
+## DAY6
 
-- [About](#about)
+- WEB Server
+    - definisi
+    - network/jaringan
+        - local network
+        - public network
+    - url
+        - path
+        - parameter
+        - query
+    - method (hanya sebagian)
+        - GET
+        - POST
+        - PUT
+        - DELETE
+    - transport network
+        - http1.1
+        - http2
+        - http3
+        - gRPC
+        - h2c
 
-- [Prerequisites](#prerequisites)
-- [Contributing](#maintainer)
+- HTTP server (native built in library)
+    - GET method
+    - POST method
+    
+- Web Framework
+<!-- TANPA CLEAN ARCHITECTURE -->
+    - definisi web framework dan contoh
+        - mux
+        - echo
+        - dll
+    - Gin Gonic :)
+        https://github.com/gin-gonic/gin
 
-## About <a name = "about"></a>
+----
+## mini assessment
 
-This project contains all example codes per day. Kindly periodically check the branches on this repo.
-Good Luck Have Fun
+ASSESSMENT:
+1. membuat API PUT: mengupdate user identity dengan yang dapat diubah hanya name dan class
+2. membuat API DELETE: mendelete user dengan query user_code
 
-### Prerequisites <a name = "prerequisites"></a>
+----
 
-tools needed:
-1. [vscode](https://code.visualstudio.com/download) (default), or others text editor sublime/goland/vim
-2. [go](https://go.dev/doc/install), kindly choose go version that compatible with your Operating System (OS), latest version 1.19.1
-3. [docker](https://www.docker.com/products/docker-desktop) (optional)
-
-before started:
-1. enroll class with given code from hactive8 team
-
-
-## Maintainer <a name = "maintainer"></a>
-[calmantara](https://github.com/Calmantara)
+![alt text](./day6.drawio.png)
