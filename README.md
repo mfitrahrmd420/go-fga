@@ -1,27 +1,31 @@
 # FGA Kominfo Learning
 
-## Table of Contents
+## Day7 - SQL
+- Database (Postgresql)
+    - apa itu database
+    - kenapa database ada
+    - hierarki dalam database
+        - database
+        - schema
+        - table
+        - column
+    - connect dengan database client (dbeaver)
+        - https://dbeaver.io/download/
+        - SQL
+            - apa itu SQL?
+        - membuat table
+        - CRUD 
+        
+    - Deep Dive (little):
+        - transaction
 
-- [About](#about)
+- Implementasi GO
+    - menjelaskan native dan ORM package
+    - query dan mapping ke struct di Go (Native dan ORM)
 
-- [Prerequisites](#prerequisites)
-- [Contributing](#maintainer)
+- Clean Architecture
+    - Apa itu clean architecture
+    - Kenapa harus ada clean architecture
 
-## About <a name = "about"></a>
-
-This project contains all example codes per day. Kindly periodically check the branches on this repo.
-Good Luck Have Fun
-
-### Prerequisites <a name = "prerequisites"></a>
-
-tools needed:
-1. [vscode](https://code.visualstudio.com/download) (default), or others text editor sublime/goland/vim
-2. [go](https://go.dev/doc/install), kindly choose go version that compatible with your Operating System (OS), latest version 1.19.1
-3. [docker](https://www.docker.com/products/docker-desktop) (optional)
-
-before started:
-1. enroll class with given code from hactive8 team
-
-
-## Maintainer <a name = "maintainer"></a>
-[calmantara](https://github.com/Calmantara)
+---
+![day7](./day7.drawio.png)
