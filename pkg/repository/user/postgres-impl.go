@@ -33,7 +33,7 @@ func (u *UserRepoImpl) GetUserByEmail(ctx context.Context, email string) (result
 	return result, err
 }
 
-func (u *UserRepoImpl) InsertUser(ctx context.Context, insertedUser user.User) (err error) {
+func (u *UserRepoImpl) InsertUser(ctx context.Context, insertedUser *user.User) (err error) {
 	log.Printf("%T - InsertUser is invoked]\n", u)
 	defer log.Printf("%T - InsertUser executed\n", u)
 	// get gorm client first

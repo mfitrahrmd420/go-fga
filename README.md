@@ -41,6 +41,22 @@ Membuat user beserta order history dari user
         - json unmarshall
         - transform from map to struct
 - API Documentation (Swagger)
+    ketika membuat API, cuma developer yang tau apa
+    body payload, header payload yang diperlukan 
+    untuk mengakses atau merequest API tersebut
+    
+    api contract -> memberikan dokumentasi cara penggunaan
+    API yang temen temen buat. supaya nanti team FrontEnd
+    bisa langsung menggunakan API yang sudah dibuat.
+
+    standard documentation -> OpenAPI
+    ref: https://www.openapis.org/
+
     - Apa itu swagger
+        tools yang mempermudah untuk pembuatan API Doc
+        ref: https://swagger.io/
     - kenapa swagger ada
+        untuk membantu BE team, dalam pembuatan standard API Doc
+        yang dapat dibaca oleh semua TEAM dengan format OpenAPI
+        ex: xendit, twitter, whatsapp
     - implementasi menggunakan swaggo

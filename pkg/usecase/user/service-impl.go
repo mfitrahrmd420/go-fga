@@ -60,7 +60,7 @@ func (u *UserUsecaseImpl) InsertUserSvc(ctx context.Context, input user.User) (r
 	}
 	// valid condition: NOT_FOUND
 	log.Println("insert user to database process")
-	if err = u.userRepo.InsertUser(ctx, input); err != nil {
+	if err = u.userRepo.InsertUser(ctx, &input); err != nil {
 		log.Printf("error when inserting user:%v\n", err.Error())
 		err = errors.New("INTERNAL_SERVER_ERROR")
 	}

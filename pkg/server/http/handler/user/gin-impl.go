@@ -21,6 +21,15 @@ func (u *UserHdlImpl) GetUserByEmailHdl(ctx *gin.Context) {
 
 }
 
+// Insert New User
+// @Summary this api will insert user with unique email
+// @Schemes
+// @Description insert new user
+// @Tags user
+// @Accept json
+// @Produce json
+// @Success 200 {object} User
+// @Router /v1/user [post]
 func (u *UserHdlImpl) InsertUserHdl(ctx *gin.Context) {
 	// JSON: struktur data yang bisa dibaca secara manusiawi
 	// dan digunakan secara masive untuk mengirimkan payload

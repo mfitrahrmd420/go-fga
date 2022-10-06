@@ -6,16 +6,33 @@ import (
 	"time"
 
 	"github.com/Calmantara/go-fga/config/postgres"
+	"github.com/Calmantara/go-fga/pkg/domain/message"
 	"github.com/gin-gonic/gin"
 
 	engine "github.com/Calmantara/go-fga/config/gin"
-	"github.com/Calmantara/go-fga/pkg/domain/message"
+	docs "github.com/Calmantara/go-fga/docs"
 	userrepo "github.com/Calmantara/go-fga/pkg/repository/user"
 	userhandler "github.com/Calmantara/go-fga/pkg/server/http/handler/user"
 	userrouter "github.com/Calmantara/go-fga/pkg/server/http/router/v1"
 	userusecase "github.com/Calmantara/go-fga/pkg/usecase/user"
+	swaggerfiles "github.com/swaggo/files"
+	ginswagger "github.com/swaggo/gin-swagger"
 )
 
+// comment dalam go
+// untuk beberapa CODE GENERATOR -> tools yang digunakan untuk
+// membuat code template di dalam project GO
+// ex: swaggo, mockgen, dll
+// untuk beberapa tools generator, tools akan membaca comment
+// yang memiliki annotation
+
+// @title UserOrder API
+// @version 1.0
+// @description This is api for creating user and user order
+// @termOfService https://swagger.io/terms
+// @contact.name FGA API Support
+// @host localhost:8080
+// @BasePath /
 func main() {
 	// generate postgres config and connect to postgres
 	// this postgres client, will be used in repository layer
@@ -68,6 +85,10 @@ func main() {
 
 		ctx.JSON(http.StatusOK, respStruct)
 	})
+
+	docs.SwaggerInfo.BasePath = "/v1"
+	ginEngine.GetGin().GET("/swagger/*any", ginswagger.
+		WrapHandler(swaggerfiles.Handler))
 
 	// generate user repository
 	userRepo := userrepo.NewUserRepo(postgresCln)
