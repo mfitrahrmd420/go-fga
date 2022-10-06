@@ -60,3 +60,6 @@ Membuat user beserta order history dari user
         yang dapat dibaca oleh semua TEAM dengan format OpenAPI
         ex: xendit, twitter, whatsapp
     - implementasi menggunakan swaggo
+
+---
+![day8](./day8.png)

@@ -99,6 +99,16 @@ func main() {
 	// initiate router
 	userrouter.NewUserRouter(ginEngine, useHandler).Routers()
 
+	// ASSESSMENT
+	// buat API
+	// - get user
+	// sebelum membuat order
+	//	- table dengan relasi order -> user (FOREIGN KEY)
+	// 			ref:https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-create-table/
+	// 	- code base untuk repo, usecase, dll
+	// - create order
+	// - get order by user
+
 	// running the service
 	ginEngine.Serve()
 }
