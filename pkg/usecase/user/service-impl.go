@@ -24,7 +24,7 @@ func (u *UserUsecaseImpl) GetUserByEmailSvc(ctx context.Context, email string) (
 	result, err = u.userRepo.GetUserByEmail(ctx, email)
 	if err != nil {
 		// ini berarti ada yang salah dengan connection di database
-		log.Fatal("error when fetching data from database: " + err.Error())
+		log.Println("error when fetching data from database: " + err.Error())
 		err = errors.New("INTERNAL_SERVER_ERROR")
 		return result, err
 	}
@@ -32,7 +32,7 @@ func (u *UserUsecaseImpl) GetUserByEmailSvc(ctx context.Context, email string) (
 	log.Println("checking user id")
 	if result.ID <= 0 {
 		// kalau tidak berarti user not found
-		log.Fatal("user is not found: " + email)
+		log.Println("user is not found: " + email)
 		err = errors.New("NOT_FOUND")
 		return result, err
 	}
@@ -48,21 +48,21 @@ func (u *UserUsecaseImpl) InsertUserSvc(ctx context.Context, input user.User) (r
 	// check user is exist or not
 	if err == nil {
 		// user found
-		log.Fatalf("user has been registered with id: %v", usrCheck.ID)
+		log.Printf("user has been registered with id: %v\n", usrCheck.ID)
 		err = errors.New("BAD_REQUEST")
 		return result, err
 	}
 	// internal server error condition
 	if err.Error() != "NOT_FOUND" {
 		// internal server error
-		log.Fatal("got error when checking user from database")
+		log.Println("got error when checking user from database")
 		return result, err
 	}
 	// valid condition: NOT_FOUND
 	log.Println("insert user to database process")
 	if err = u.userRepo.InsertUser(ctx, input); err != nil {
-		log.Fatalf("error when inserting user:%v", err.Error())
+		log.Printf("error when inserting user:%v\n", err.Error())
 		err = errors.New("INTERNAL_SERVER_ERROR")
 	}
-	return result, err
+	return input, err
 }

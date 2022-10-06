@@ -18,7 +18,7 @@ type GinImpl struct {
 
 func NewGinHttp(conf Config) HttpServer {
 	ginEngine := gin.Default()
-	return &GinImpl{engine: ginEngine}
+	return &GinImpl{engine: ginEngine, config: conf}
 }
 
 func (g *GinImpl) GetGin() *gin.Engine {
@@ -26,5 +26,7 @@ func (g *GinImpl) GetGin() *gin.Engine {
 }
 
 func (g *GinImpl) Serve() {
-	g.engine.Run(g.config.Port)
+	if err := g.engine.Run(g.config.Port); err != nil {
+		panic(err)
+	}
 }

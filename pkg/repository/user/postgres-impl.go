@@ -23,10 +23,11 @@ func (u *UserRepoImpl) GetUserByEmail(ctx context.Context, email string) (result
 	db := u.pgCln.GetClient()
 	// insert new user
 	db.Model(&user.User{}).
+		Where("email = ?", email).
 		Find(&result)
 	//check error
 	if err = db.Error; err != nil {
-		log.Fatalf("error when getting user with email %v",
+		log.Printf("error when getting user with email %v\n",
 			email)
 	}
 	return result, err
@@ -42,7 +43,7 @@ func (u *UserRepoImpl) InsertUser(ctx context.Context, insertedUser user.User) (
 		Create(&insertedUser)
 	//check error
 	if err = db.Error; err != nil {
-		log.Fatalf("error when inserting user with email %v",
+		log.Printf("error when inserting user with email %v\n",
 			insertedUser.Email)
 	}
 	return err
