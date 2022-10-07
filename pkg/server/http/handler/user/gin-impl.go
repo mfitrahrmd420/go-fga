@@ -48,8 +48,8 @@ func (u *UserHdlImpl) InsertUserHdl(ctx *gin.Context) {
 	var user user.User
 	if err := ctx.ShouldBind(&user); err != nil {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, message.Response{
-			Code:  80,
-			Error: "failed to bind payload",
+			Status:  "fail",
+			Message: "failed to bind payload",
 		})
 		return
 	}
@@ -57,8 +57,8 @@ func (u *UserHdlImpl) InsertUserHdl(ctx *gin.Context) {
 	log.Println("check email from request")
 	if user.Email == "" {
 		ctx.AbortWithStatusJSON(http.StatusBadRequest, message.Response{
-			Code:  80,
-			Error: "email should not be empty",
+			Status:  "fail",
+			Message: "email should not be empty",
 		})
 		return
 	}
@@ -69,21 +69,21 @@ func (u *UserHdlImpl) InsertUserHdl(ctx *gin.Context) {
 		switch err.Error() {
 		case "BAD_REQUEST":
 			ctx.AbortWithStatusJSON(http.StatusBadRequest, message.Response{
-				Code:  80,
-				Error: "invalid processing payload",
+				Status:  "fail",
+				Message: "invalid processing payload",
 			})
 			return
 		case "INTERNAL_SERVER_ERROR":
 			ctx.AbortWithStatusJSON(http.StatusInternalServerError, message.Response{
-				Code:  99,
-				Error: "something went wrong",
+				Status:  "fail",
+				Message: "something went wrong",
 			})
 			return
 		}
 	}
 	// response result for the user if success
 	ctx.JSONP(http.StatusOK, message.Response{
-		Code:    0,
+		Status:  "success",
 		Message: "success insert user",
 		Data:    result,
 	})
