@@ -3,6 +3,8 @@ package user
 import (
 	"context"
 	"errors"
+	"fmt"
+	"github.com/Calmantara/go-fga/pkg/domain/message"
 	"log"
 
 	"github.com/Calmantara/go-fga/pkg/domain/user"
@@ -17,53 +19,34 @@ func NewUserUsecase(userRepo user.UserRepo) user.UserUsecase {
 }
 
 func (u *UserUsecaseImpl) GetUserByEmailSvc(ctx context.Context, email string) (result user.User, err error) {
-	log.Printf("%T - GetUserByEmail is invoked]\n", u)
-	defer log.Printf("%T - GetUserByEmail executed\n", u)
-	// get user from repository (database)
-	log.Println("getting user from user repository")
 	result, err = u.userRepo.GetUserByEmail(ctx, email)
 	if err != nil {
-		// ini berarti ada yang salah dengan connection di database
-		log.Println("error when fetching data from database: " + err.Error())
-		err = errors.New("INTERNAL_SERVER_ERROR")
-		return result, err
+		log.Printf("error when getting user data with given email : %v\n", err.Error())
+
+		return
 	}
-	// check user id > 0 ?
-	log.Println("checking user id")
-	if result.ID <= 0 {
-		// kalau tidak berarti user not found
-		log.Println("user is not found: " + email)
-		err = errors.New("NOT_FOUND")
-		return result, err
-	}
-	return result, err
+
+	return
 }
 
 func (u *UserUsecaseImpl) InsertUserSvc(ctx context.Context, input user.User) (result user.User, err error) {
-	log.Printf("%T - InsertUserSvc is invoked]\n", u)
-	defer log.Printf("%T - InsertUserSvc executed\n", u)
-	// get user for input email first
-	usrCheck, err := u.GetUserByEmailSvc(ctx, input.Email)
+	usr, err := u.GetUserByEmailSvc(ctx, input.Email)
+	if err != nil {
+		fmt.Printf("error when checking email : %v\n", err.Error())
 
-	// check user is exist or not
-	if err == nil {
-		// user found
-		log.Printf("user has been registered with id: %v\n", usrCheck.ID)
-		err = errors.New("BAD_REQUEST")
 		return result, err
 	}
-	// internal server error condition
-	if err.Error() != "NOT_FOUND" {
-		// internal server error
-		log.Println("got error when checking user from database")
-		return result, err
+
+	if usr != (user.User{}) {
+		return result, errors.New(message.EMAIL_USED)
 	}
-	// valid condition: NOT_FOUND
-	log.Println("insert user to database process")
+
 	if err = u.userRepo.InsertUser(ctx, &input); err != nil {
-		log.Printf("error when inserting user:%v\n", err.Error())
-		err = errors.New("INTERNAL_SERVER_ERROR")
+		log.Printf("error when inserting user : %v\n", err.Error())
+
+		return result, err
 	}
+
 	return input, err
 }
 
@@ -71,6 +54,7 @@ func (u *UserUsecaseImpl) GetUsersSvc(ctx context.Context) ([]user.User, error) 
 	users, err := u.userRepo.GetUsers(ctx)
 	if err != nil {
 		log.Printf("error when getting users data : %v\n", err.Error())
+
 		return nil, err
 	}
 

@@ -21,6 +21,7 @@ func NewUserRouter(ginEngine engine.HttpServer, userHandler user.UserHandler) ro
 func (u *UserRouterImpl) get() {
 	// all path for get method are here
 	u.routerGroup.GET("", u.userHandler.GetUsersHdl)
+	u.routerGroup.GET("/:email", u.userHandler.GetUserByEmailHdl)
 }
 
 func (u *UserRouterImpl) post() {

@@ -2,8 +2,6 @@ package user
 
 import (
 	"context"
-	"log"
-
 	"github.com/Calmantara/go-fga/config/postgres"
 	"github.com/Calmantara/go-fga/pkg/domain/user"
 )
@@ -17,44 +15,26 @@ func NewUserRepo(pgCln postgres.PostgresClient) user.UserRepo {
 }
 
 func (u *UserRepoImpl) GetUserByEmail(ctx context.Context, email string) (result user.User, err error) {
-	log.Printf("%T - GetUserByEmail is invoked]\n", u)
-	defer log.Printf("%T - GetUserByEmail executed\n", u)
-	// get gorm client first
-	db := u.pgCln.GetClient()
-	// insert new user
-	db.Model(&user.User{}).
+	err = u.pgCln.GetClient().
+		Model(&user.User{}).
 		Where("email = ?", email).
-		Find(&result)
-	//check error
-	if err = db.Error; err != nil {
-		log.Printf("error when getting user with email %v\n",
-			email)
-	}
-	return result, err
+		Find(&result).Error
+
+	return
 }
 
 func (u *UserRepoImpl) InsertUser(ctx context.Context, insertedUser *user.User) (err error) {
-	log.Printf("%T - InsertUser is invoked]\n", u)
-	defer log.Printf("%T - InsertUser executed\n", u)
-	// get gorm client first
-	db := u.pgCln.GetClient()
-	// insert new user
-	db.Model(&user.User{}).
-		Create(&insertedUser)
-	//check error
-	if err = db.Error; err != nil {
-		log.Printf("error when inserting user with email %v\n",
-			insertedUser.Email)
-	}
-	return err
+	err = u.pgCln.GetClient().
+		Model(&user.User{}).
+		Create(&insertedUser).Error
+
+	return
 }
 
-func (u *UserRepoImpl) GetUsers(ctx context.Context) ([]user.User, error) {
-	var result []user.User
+func (u *UserRepoImpl) GetUsers(ctx context.Context) (result []user.User, err error) {
+	err = u.pgCln.GetClient().
+		Model(&user.User{}).
+		Find(&result).Error
 
-	if err := u.pgCln.GetClient().Model(&user.User{}).Find(&result).Error; err != nil {
-		return nil, err
-	}
-
-	return result, nil
+	return
 }
