@@ -14,12 +14,13 @@ type UserRouterImpl struct {
 }
 
 func NewUserRouter(ginEngine engine.HttpServer, userHandler user.UserHandler) router.Router {
-	routerGroup := ginEngine.GetGin().Group("/v1/user")
+	routerGroup := ginEngine.GetGin().Group("/v1/users")
 	return &UserRouterImpl{ginEngine: ginEngine, routerGroup: routerGroup, userHandler: userHandler}
 }
 
 func (u *UserRouterImpl) get() {
 	// all path for get method are here
+	u.routerGroup.GET("", u.userHandler.GetUsersHdl)
 }
 
 func (u *UserRouterImpl) post() {
@@ -29,4 +30,5 @@ func (u *UserRouterImpl) post() {
 
 func (u *UserRouterImpl) Routers() {
 	u.post()
+	u.get()
 }

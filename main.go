@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"github.com/Calmantara/go-fga/pkg/domain/user"
 	"net/http"
 	"time"
 
@@ -39,10 +40,12 @@ func main() {
 	postgresCln := postgres.NewPostgresConnection(postgres.Config{
 		Host:         "localhost",
 		Port:         "5432",
-		User:         "postgres",
-		Password:     "postgresAdmin",
-		DatabaseName: "postgres",
+		User:         "developer",
+		Password:     "developer",
+		DatabaseName: "assesment2",
 	})
+
+	postgresCln.GetClient().AutoMigrate(user.User{})
 
 	// gin engine
 	ginEngine := engine.NewGinHttp(engine.Config{

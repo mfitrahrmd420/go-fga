@@ -48,3 +48,13 @@ func (u *UserRepoImpl) InsertUser(ctx context.Context, insertedUser *user.User) 
 	}
 	return err
 }
+
+func (u *UserRepoImpl) GetUsers(ctx context.Context) ([]user.User, error) {
+	var result []user.User
+
+	if err := u.pgCln.GetClient().Model(&user.User{}).Find(&result).Error; err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}

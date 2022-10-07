@@ -66,3 +66,13 @@ func (u *UserUsecaseImpl) InsertUserSvc(ctx context.Context, input user.User) (r
 	}
 	return input, err
 }
+
+func (u *UserUsecaseImpl) GetUsersSvc(ctx context.Context) ([]user.User, error) {
+	users, err := u.userRepo.GetUsers(ctx)
+	if err != nil {
+		log.Printf("error when getting users data : %v\n", err.Error())
+		return nil, err
+	}
+
+	return users, nil
+}

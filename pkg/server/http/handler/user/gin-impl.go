@@ -88,3 +88,20 @@ func (u *UserHdlImpl) InsertUserHdl(ctx *gin.Context) {
 		Data:    result,
 	})
 }
+
+func (u *UserHdlImpl) GetUsersHdl(ctx *gin.Context) {
+	users, err := u.userUsecase.GetUsersSvc(ctx)
+	if err != nil {
+		ctx.AbortWithStatusJSON(http.StatusInternalServerError, message.Response{
+			Status:  "fail",
+			Message: "something went wrong",
+		})
+
+		return
+	}
+
+	ctx.JSON(http.StatusOK, message.Response{
+		Status: "success",
+		Data:   users,
+	})
+}
