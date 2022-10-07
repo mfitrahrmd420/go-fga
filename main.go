@@ -3,6 +3,9 @@ package main
 import (
 	"encoding/json"
 	"github.com/Calmantara/go-fga/pkg/domain/user"
+	orderrepo "github.com/Calmantara/go-fga/pkg/repository/order"
+	orderhandler "github.com/Calmantara/go-fga/pkg/server/http/handler/order"
+	orderusecase "github.com/Calmantara/go-fga/pkg/usecase/order"
 	"net/http"
 	"time"
 
@@ -98,9 +101,15 @@ func main() {
 	// initiate use case
 	userUsecase := userusecase.NewUserUsecase(userRepo)
 	// initiate handler
-	useHandler := userhandler.NewUserHandler(userUsecase)
+	userHandler := userhandler.NewUserHandler(userUsecase)
 	// initiate router
-	userrouter.NewUserRouter(ginEngine, useHandler).Routers()
+	userrouter.NewUserRouter(ginEngine, userHandler).Routers()
+
+	// order implementation
+	orderRepo := orderrepo.NewOrderRepo(postgresCln)
+	orderUsecase := orderusecase.NewOrderUsecase(orderRepo)
+	orderHandler := orderhandler.NewOrderHandler(orderUsecase)
+	userrouter.NewOrderRouter(ginEngine, orderHandler).Routers()
 
 	// ASSESSMENT
 	// buat API

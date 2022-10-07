@@ -1,5 +1,14 @@
 basePath: /
 definitions:
+  order.Order:
+    properties:
+      id:
+        type: integer
+      ordered_At:
+        type: string
+      user_id:
+        type: integer
+    type: object
   user.User:
     properties:
       email:
@@ -19,11 +28,60 @@ info:
   title: UserOrder API
   version: "1.0"
 paths:
-  /v1/user:
+  /v1/orders:
     post:
       consumes:
       - application/json
-      description: insert new user
+      description: this api will insert new order with existing user data
+      parameters:
+      - description: order object body
+        in: body
+        name: order
+        required: true
+        schema:
+          $ref: '#/definitions/order.Order'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/order.Order'
+      summary: insert new order
+      tags:
+      - orders
+  /v1/orders/user:
+    get:
+      consumes:
+      - application/json
+      description: this api will get orders from specific user
+      parameters:
+      - description: user id
+        in: path
+        name: userId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/order.Order'
+      summary: get orders from user
+      tags:
+      - orders
+  /v1/users:
+    get:
+      consumes:
+      - application/json
+      description: this api will get a user with specific email
+      parameters:
+      - description: user email
+        in: path
+        name: email
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -31,7 +89,28 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/user.User'
-      summary: this api will insert user with unique email
+      summary: get user by email
       tags:
-      - user
+      - users
+    post:
+      consumes:
+      - application/json
+      description: this api will insert user with unique email
+      parameters:
+      - description: user object body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/user.User'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/user.User'
+      summary: insert new user
+      tags:
+      - users
 swagger: "2.0"

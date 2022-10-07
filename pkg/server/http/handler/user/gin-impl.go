@@ -17,6 +17,15 @@ func NewUserHandler(userUsecase user.UserUsecase) user.UserHandler {
 	return &UserHdlImpl{userUsecase: userUsecase}
 }
 
+// GetUserByEmailHdl godoc
+// @Summary get user by email
+// @Description this api will get a user with specific email
+// @Tags users
+// @Accept json
+// @Produce json
+// @Param email path string true "user email"
+// @Success 200 {object} user.User
+// @Router /v1/users [get]
 func (u *UserHdlImpl) GetUserByEmailHdl(ctx *gin.Context) {
 	email := ctx.Param("email")
 
@@ -51,6 +60,7 @@ func (u *UserHdlImpl) GetUserByEmailHdl(ctx *gin.Context) {
 // @Tags users
 // @Accept json
 // @Produce json
+// @Param user body user.User true "user object body"
 // @Success 201 {object} user.User
 // @Router /v1/users [post]
 func (u *UserHdlImpl) InsertUserHdl(ctx *gin.Context) {
